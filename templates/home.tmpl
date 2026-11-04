@@ -1,51 +1,48 @@
 {{template "base/head" .}}
 <div role="main" aria-label="{{if .IsSigned}}{{ctx.Locale.Tr "dashboard"}}{{else}}{{ctx.Locale.Tr "home_title"}}{{end}}" class="page-content home">
-	<div class="tw-mb-8 tw-px-8">
-		<div class="center">
-			<img class="logo" width="220" height="220" src="{{AssetUrlPrefix}}/img/logo.svg" alt="{{ctx.Locale.Tr "logo"}}">
-			<div class="hero">
-				<h1 class="ui icon header title tw-text-balance">
-					{{AppName}}
-				</h1>
-				<h2 class="tw-text-balance">{{ctx.Locale.Tr "startpage.app_desc"}}</h2>
+	<section class="home-hero">
+		<div class="ui container home-hero-content">
+			<img class="home-hero-logo" width="112" height="112" src="{{AssetUrlPrefix}}/img/logo.svg" alt="{{ctx.Locale.Tr "logo"}}">
+			<h1 class="home-hero-title tw-text-balance">{{AppName}}</h1>
+			<p class="home-hero-subtitle tw-text-balance">{{ctx.Locale.Tr "startpage.app_desc"}}</p>
+			<div class="home-hero-actions">
+				<a class="ui primary button" rel="nofollow" href="{{AppSubUrl}}/user/login">{{svg "octicon-sign-in"}} {{ctx.Locale.Tr "sign_in"}}</a>
+				{{if .ShowRegistrationButton}}
+					<a class="ui button" href="{{AppSubUrl}}/user/sign_up">{{svg "octicon-person"}} {{ctx.Locale.Tr "register"}}</a>
+				{{end}}
+				<a class="ui button" href="{{AppSubUrl}}/explore/repos">{{svg "octicon-telescope"}} {{ctx.Locale.Tr "explore_title"}}</a>
 			</div>
 		</div>
-	</div>
-	<div class="ui stackable middle very relaxed page grid">
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				{{svg "octicon-flame"}} {{ctx.Locale.Tr "startpage.install"}}
-			</h1>
-			<p class="large tw-text-balance">
+	</section>
+	<section class="ui container home-features">
+		<div class="home-feature">
+			<div class="home-feature-icon">{{svg "octicon-flame" 24}}</div>
+			<h2 class="home-feature-title">{{ctx.Locale.Tr "startpage.install"}}</h2>
+			<p>
 				{{ctx.Locale.Tr "startpage.install_desc" "https://docs.gitea.com/installation/install-from-binary" "https://github.com/go-gitea/gitea/tree/master/docker" "https://docs.gitea.com/installation/install-from-package"}}
 			</p>
 		</div>
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				{{svg "octicon-device-desktop"}} {{ctx.Locale.Tr "startpage.platform"}}
-			</h1>
-			<p class="large tw-text-balance">
+		<div class="home-feature">
+			<div class="home-feature-icon">{{svg "octicon-device-desktop" 24}}</div>
+			<h2 class="home-feature-title">{{ctx.Locale.Tr "startpage.platform"}}</h2>
+			<p>
 				{{ctx.Locale.Tr "startpage.platform_desc" "https://go.dev/"}}
 			</p>
 		</div>
-	</div>
-	<div class="ui stackable middle very relaxed page grid">
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				{{svg "octicon-rocket"}} {{ctx.Locale.Tr "startpage.lightweight"}}
-			</h1>
-			<p class="large tw-text-balance">
+		<div class="home-feature">
+			<div class="home-feature-icon">{{svg "octicon-rocket" 24}}</div>
+			<h2 class="home-feature-title">{{ctx.Locale.Tr "startpage.lightweight"}}</h2>
+			<p>
 				{{ctx.Locale.Tr "startpage.lightweight_desc"}}
 			</p>
 		</div>
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				{{svg "octicon-code"}} {{ctx.Locale.Tr "startpage.license"}}
-			</h1>
-			<p class="large tw-text-balance">
+		<div class="home-feature">
+			<div class="home-feature-icon">{{svg "octicon-code" 24}}</div>
+			<h2 class="home-feature-title">{{ctx.Locale.Tr "startpage.license"}}</h2>
+			<p>
 				{{ctx.Locale.Tr "startpage.license_desc" "https://gitea.dev" "gitea.dev" "https://github.com/go-gitea/gitea"}}
 			</p>
 		</div>
-	</div>
+	</section>
 </div>
 {{template "base/footer" .}}

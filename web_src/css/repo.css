@@ -1,5 +1,5 @@
 .repo-header {
-  padding: 1em 0 0.25em;
+  padding: 20px 0 6px;
 }
 
 .secondary-nav .secondary-info {
@@ -972,6 +972,10 @@
   text-decoration: none;
 }
 
+.repository .repository-summary .sub-menu .item:hover {
+  background: var(--color-hover);
+}
+
 .repository .repository-summary .sub-menu .item.active {
   background: var(--color-secondary);
 }
@@ -1422,8 +1426,8 @@ tbody.commit-list {
 
 /* fomantic's last-child selector does not work with hidden last child */
 .ui.buttons .unescape-button {
-  border-top-right-radius: 0.28571429rem;
-  border-bottom-right-radius: 0.28571429rem;
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
 }
 
 .webhook-info {

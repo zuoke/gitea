@@ -41,13 +41,13 @@
 }
 
 .tippy-box[data-theme="default"] {
-  box-shadow: 0 6px 18px var(--color-shadow);
+  box-shadow: var(--box-shadow-popup);
 }
 
 /* bare theme, no styling at all, except box-shadow */
 .tippy-box[data-theme="bare"] {
   border: none;
-  box-shadow: 0 6px 18px var(--color-shadow);
+  box-shadow: var(--box-shadow-popup);
 }
 
 .tippy-box[data-theme="bare"] .tippy-content {
@@ -77,7 +77,7 @@
 .tippy-box[data-theme="menu"] {
   background-color: var(--color-menu);
   color: var(--color-text);
-  box-shadow: 0 6px 18px var(--color-shadow);
+  box-shadow: var(--box-shadow-popup);
 }
 
 .tippy-box[data-theme="menu"] .tippy-content {
@@ -116,7 +116,7 @@
 /* box-with-header theme to look like .ui.attached.segment. can contain .ui.attached.header */
 
 .tippy-box[data-theme="box-with-header"] {
-  box-shadow: 0 6px 18px var(--color-shadow);
+  box-shadow: var(--box-shadow-popup);
 }
 
 .tippy-box[data-theme="box-with-header"] .tippy-content {

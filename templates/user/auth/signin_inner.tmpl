@@ -1,4 +1,4 @@
-<div class="ui container fluid">
+<div class="ui container fluid auth-card">
 	{{if or (not .LinkAccountMode) (and .LinkAccountMode .LinkAccountModeSignIn)}}
 	{{template "base/alert" .}}
 	{{end}}
@@ -58,8 +58,8 @@
 </div>
 
 {{if or .EnablePasskeyAuth .ShowRegistrationButton}}
-<div class="ui container fluid">
-	<div class="ui attached segment header top tw-max-w-2xl tw-m-auto tw-flex tw-flex-col tw-items-center">
+<div class="ui container fluid auth-card-footer">
+	<div class="tw-flex tw-flex-col tw-items-center tw-gap-2">
 		{{if .EnablePasskeyAuth}}
 			{{template "user/auth/webauthn_error" .}}
 			<a class="signin-passkey">{{ctx.Locale.Tr "auth.signin_passkey"}}</a>

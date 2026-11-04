@@ -5,8 +5,8 @@
   opacity: 0;
   transition: all .2s ease;
   z-index: var(--z-index-toast);
-  border-radius: var(--border-radius);
-  box-shadow: 0 8px 24px var(--color-shadow);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--box-shadow-popup);
   display: flex;
   max-width: 50vw;
   min-width: 300px;

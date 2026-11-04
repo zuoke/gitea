@@ -136,7 +136,7 @@ test.describe('events', () => {
     await page1.goto('/user/logout');
 
     // page2 should be redirected via the logout event
-    await expect(page2.getByRole('link', {name: 'Sign In'})).toBeVisible();
+    await expect(page2.getByRole('navigation', {name: 'Navigation Bar'}).getByRole('link', {name: 'Sign In'})).toBeVisible();
 
     await context.close();
   });

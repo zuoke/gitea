@@ -54,8 +54,8 @@ export default {
     borderRadius: {
       'none': '0',
       'sm': '2px',
-      'DEFAULT': 'var(--border-radius)', // 4px
-      'md': 'var(--border-radius-medium)', // 6px
+      'DEFAULT': 'var(--border-radius)', // 6px
+      'md': 'var(--border-radius-medium)', // 8px
       'lg': '8px',
       'xl': '12px',
       '2xl': '16px',

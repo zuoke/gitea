@@ -9,8 +9,8 @@
   margin: 0;
   padding: 0;
   color: inherit;
-  box-shadow: 1px 3px 3px 0 var(--color-shadow), 1px 3px 15px 2px var(--color-shadow);
-  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-dialog);
+  border-radius: var(--border-radius-large);
   user-select: text;
 
   width: fit-content;
@@ -23,13 +23,13 @@
 }
 
 .modal-dialog > :first-child {
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius-large);
+  border-top-right-radius: var(--border-radius-large);
 }
 
 .modal-dialog > :last-child {
-  border-bottom-left-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius-large);
+  border-bottom-right-radius: var(--border-radius-large);
 }
 
 .modal-dialog .close-modal {
@@ -65,15 +65,15 @@
   display: block;
   position: relative;
   font-size: 18px;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   background: var(--color-body);
   margin: 0;
   padding: 1.25rem 3rem 1.25rem 1.5rem; /* leave more right space for the "close" button */
   box-shadow: none;
   color: var(--color-text-dark);
   border-bottom: 1px solid var(--color-secondary);
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius-large);
+  border-top-right-radius: var(--border-radius-large);
 }
 
 .modal-dialog > .content,
@@ -84,17 +84,17 @@
   line-height: 1.4;
   padding: 1.5em;
   background: var(--color-body);
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
 }
 
 .modal-dialog > .actions,
 .modal-dialog .content + .actions,
 .modal-dialog .content + form > .actions {
-  background: var(--color-secondary-bg);
-  padding: 1rem;
+  background: var(--color-box-header);
+  padding: 1rem 1.5rem;
   border-top: 1px solid var(--color-secondary);
   text-align: right;
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
 }
 
 .modal-dialog .content > form > .actions,

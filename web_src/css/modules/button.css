@@ -6,7 +6,7 @@
   outline: none;
   font-family: var(--fonts-regular);
   margin: 0 0.25em 0 0;
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-medium);
   font-size: 1rem;
   text-align: center;
   text-decoration: none;
@@ -17,8 +17,10 @@
   justify-content: center;
   background: var(--color-button);
   border: 1px solid var(--color-light-border);
+  box-shadow: var(--box-shadow-subtle);
   color: var(--color-text);
   white-space: nowrap;
+  transition: var(--transition-hover);
 }
 
 @media (max-width: 767.98px) {
@@ -28,7 +30,8 @@
 }
 
 .ui.button:hover {
-  background: var(--color-hover);
+  background: var(--color-secondary-light-2); /* opaque, so it also works on non-body backgrounds */
+  border-color: var(--color-secondary-dark-2);
   color: var(--color-text);
 }
 
@@ -46,8 +49,9 @@
 .ui.button:active,
 .ui.active.button:active,
 .ui.active.button:hover {
-  background: var(--color-active);
+  background: var(--color-secondary-light-1);
   color: var(--color-text);
+  box-shadow: none;
 }
 
 .ui.buttons .disabled.button:not(.basic),
@@ -67,6 +71,7 @@
   background: none;
   padding: 0;
   border: none;
+  box-shadow: none;
   min-height: unset;
 }
 .ui.labeled.button > .button {
@@ -168,7 +173,7 @@
 
 .ui.basic.button:hover {
   color: var(--color-text);
-  background: var(--color-hover);
+  background: var(--color-secondary-light-2);
   border-color: var(--color-secondary-dark-2);
 }
 
@@ -176,7 +181,7 @@
 .ui.basic.active.button,
 .ui.basic.active.button:hover {
   color: var(--color-text);
-  background: var(--color-active);
+  background: var(--color-secondary-light-1);
 }
 
 .ui.fluid.button {
@@ -195,6 +200,14 @@
   color: var(--color-primary-contrast);
 }
 
+.ui.primary.button {
+  border-color: var(--color-primary);
+}
+
+.ui.primary.button:hover {
+  border-color: var(--color-primary-hover);
+}
+
 .ui.primary.button:active,
 .ui.primary.buttons .button:active {
   background: var(--color-primary-active);
@@ -209,6 +222,7 @@
 .ui.basic.primary.button:hover {
   color: var(--color-primary-hover);
   border-color: var(--color-primary-hover);
+  background: var(--color-primary-alpha-10);
 }
 
 .ui.basic.primary.button:active {
@@ -224,7 +238,16 @@
 
 .ui.red.button:hover,
 .ui.red.buttons .button:hover {
+  color: var(--color-white);
   background: var(--color-red-dark-1);
+}
+
+.ui.red.button {
+  border-color: var(--color-red);
+}
+
+.ui.red.button:hover {
+  border-color: var(--color-red-dark-1);
 }
 
 .ui.red.button:active,
@@ -241,6 +264,7 @@
 .ui.basic.red.button:hover {
   color: var(--color-red-dark-1);
   border-color: var(--color-red-dark-1);
+  background: var(--color-red-badge-bg);
 }
 
 .ui.basic.red.button:active {
@@ -256,7 +280,16 @@
 
 .ui.green.button:hover,
 .ui.green.buttons .button:hover {
+  color: var(--color-white);
   background: var(--color-green-dark-1);
+}
+
+.ui.green.button {
+  border-color: var(--color-green);
+}
+
+.ui.green.button:hover {
+  border-color: var(--color-green-dark-1);
 }
 
 .ui.green.button:active,
@@ -273,6 +306,7 @@
 .ui.basic.green.button:hover {
   color: var(--color-green-dark-1);
   border-color: var(--color-green-dark-1);
+  background: var(--color-green-badge-bg);
 }
 
 .ui.basic.green.button:active {

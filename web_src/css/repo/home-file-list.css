@@ -4,7 +4,7 @@
   grid-template-columns: 2fr 3fr auto;
   border: 1px solid var(--color-secondary);
   background: var(--color-box-body);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-medium);
   margin: 10px 0; /* match the "clone-panel-popup" margin to avoid "visual double-border" */
 }
 
@@ -31,15 +31,15 @@
 
 #repo-files-table .repo-file-line:first-child {
   border-top: none;
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
 }
 
 #repo-files-table .repo-file-item:last-child .repo-file-cell:first-child {
-  border-bottom-left-radius: calc(var(--border-radius) - 1px);
+  border-bottom-left-radius: calc(var(--border-radius-medium) - 1px);
 }
 
 #repo-files-table .repo-file-item:last-child .repo-file-cell:last-child {
-  border-bottom-right-radius: calc(var(--border-radius) - 1px);
+  border-bottom-right-radius: calc(var(--border-radius-medium) - 1px);
 }
 
 #repo-files-table .repo-file-line {

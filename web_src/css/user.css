@@ -85,3 +85,57 @@
 .notifications-item:hover .notifications-updated {
   display: none;
 }
+
+.auth-page-logo {
+  align-self: center;
+  margin-top: 8px;
+}
+
+.ui.container.auth-card,
+.ui.container.auth-card-footer {
+  max-width: 100%;
+}
+
+.ui.container.auth-card {
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius-large);
+  background: var(--color-box-body);
+  box-shadow: var(--box-shadow-popup);
+}
+
+.auth-card > .ui.message {
+  margin: 16px 16px 0;
+}
+
+.auth-card > .ui.attached.header,
+.auth-card > .ui.attached.segment {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  background: none;
+}
+
+.auth-card > .ui.top.attached.header {
+  padding: 28px 28px 0;
+  font-size: 22px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-dark);
+}
+
+.auth-card > .ui.attached.segment {
+  padding: 20px 28px 28px;
+}
+
+.auth-card .ui.form input:not([type="checkbox"], [type="radio"]) {
+  padding-block: 10px;
+}
+
+.auth-card .ui.form .ui.primary.button {
+  min-height: 42px;
+}
+
+.auth-card-footer {
+  color: var(--color-text-light-1);
+  text-align: center;
+}

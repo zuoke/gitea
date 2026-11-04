@@ -3,6 +3,7 @@
   display: none;
   inset: 0;
   background: var(--color-overlay-backdrop);
+  backdrop-filter: blur(2px);
   z-index: var(--z-index-modal);
   overflow-y: auto;
   justify-content: center;

@@ -51,3 +51,56 @@
 .ui.vertical.menu > details.item > .menu.items-full-width > .item:hover {
   background: var(--color-hover); /* ".ui.vertical.menu .menu .item" resets the hover background, so we need to add it again */
 }
+
+/* sidebar navigation of settings, admin and other pages with a ".flex-container-nav" */
+.flex-container-nav > .ui.vertical.menu {
+  background: none;
+  border: none;
+}
+
+.flex-container-nav > .ui.vertical.menu .item::before {
+  display: none;
+}
+
+.flex-container-nav > .ui.vertical.menu > .header.item {
+  background: none;
+  padding: 4px 12px 10px;
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-dark);
+}
+
+/* doubled classes beat the first/last/active child radius and nested menu rules of ".ui.vertical.menu" */
+.flex-container-nav > .ui.vertical.menu > a.item.item,
+.flex-container-nav > .ui.vertical.menu > details.item > summary,
+.flex-container-nav > .ui.vertical.menu > details.item > .menu > .item.item {
+  border-radius: var(--border-radius);
+  padding: 8px 12px;
+  margin-bottom: 2px;
+  color: var(--color-text-light-1);
+  transition: var(--transition-hover);
+}
+
+.flex-container-nav > .ui.vertical.menu > details.item > .menu > .item.item {
+  padding-left: 24px;
+  text-indent: 0;
+  font-size: 1em;
+}
+
+.flex-container-nav > .ui.vertical.menu > details.item > .menu {
+  margin: 0 0 6px;
+}
+
+.flex-container-nav > .ui.vertical.menu > a.item.item:hover,
+.flex-container-nav > .ui.vertical.menu > details.item > summary:hover,
+.flex-container-nav > .ui.vertical.menu > details.item > .menu > .item.item:hover {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+.flex-container-nav > .ui.vertical.menu > .active.item.item,
+.flex-container-nav > .ui.vertical.menu > details.item > .menu > .active.item.item {
+  background: var(--color-primary-alpha-10);
+  color: var(--color-primary-dark-1);
+  font-weight: var(--font-weight-medium);
+}

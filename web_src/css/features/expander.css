@@ -7,7 +7,7 @@ text-expander .suggestions,
   overflow-y: auto;
   white-space: nowrap;
   background: var(--color-menu);
-  box-shadow: 0 6px 18px var(--color-shadow);
+  box-shadow: var(--box-shadow-popup);
   border-radius: var(--border-radius);
   border: 1px solid var(--color-secondary);
   z-index: 100; /* needs to be > 20 to be on top of dropzone's .dz-details */

@@ -34,6 +34,16 @@
 		{{end}}
 	</div>
 
+	{{if not (or (and .IsSigned .MustChangePassword) .PageIsExplore)}}{{/* explore pages have their own search box */}}
+		<form class="navbar-list navbar-search ignore-dirty" role="search" action="{{AppSubUrl}}/explore/repos" method="get">
+			<div class="global-shortcut-wrapper">
+				{{svg "octicon-search" 16 "navbar-search-icon"}}
+				<input type="search" name="q" autocomplete="off" placeholder="{{ctx.Locale.Tr "search.repo_kind"}}" aria-label="{{ctx.Locale.Tr "search.repo_kind"}}">
+				<kbd data-global-init="onGlobalShortcut" data-shortcut-keys="/">/</kbd>
+			</div>
+		</form>
+	{{end}}
+
 	{{template "base/head_navbar_icons"}}
 
 	<div class="navbar-list navbar-right">

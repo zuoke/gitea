@@ -337,7 +337,7 @@
   background-color: var(--color-body);
   border: 1px solid var(--color-secondary);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
-  box-shadow: 0 4px 12px var(--color-shadow);
+  box-shadow: var(--box-shadow-popup);
   font-family: var(--fonts-regular);
   font-size: 13px;
   display: flex;
