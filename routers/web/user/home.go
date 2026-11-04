@@ -111,6 +111,10 @@ func Dashboard(ctx *context.Context) {
 
 	prepareHeatmapURL(ctx)
 
+	if ctxUser.ID == ctx.Doer.ID {
+		prepareDashboardWorkbench(ctx)
+	}
+
 	pageSize := setting.UI.FeedPagingNum
 	feeds, count, err := feed_service.GetFeedsForDashboard(ctx, activities_model.GetFeedsOptions{
 		RequestedUser:   ctxUser,
@@ -134,6 +138,68 @@ func Dashboard(ctx *context.Context) {
 	ctx.Data["Feeds"] = feeds
 
 	ctx.HTML(http.StatusOK, tplDashboard)
+}
+
+// DashboardWorkbench counts the open issues and pull requests which need the signed-in user's attention
+type DashboardWorkbench struct {
+	AssignedIssueCount   int64
+	ReviewRequestedCount int64
+	CreatedPullCount     int64
+}
+
+// prepareDashboardWorkbench uses the same repository scope as the "assigned", "review_requested" and "created_by" filters of the issue overview pages
+func prepareDashboardWorkbench(ctx *context.Context) {
+	doerID := ctx.Doer.ID
+	openItemsOptions := func(unitType unit.Type) (*issue_indexer.SearchOptions, error) {
+		repoIDs, _, err := repo_model.SearchRepositoryIDs(ctx, repo_model.SearchRepoOptions{
+			Actor:       ctx.Doer,
+			OwnerID:     doerID,
+			Private:     true,
+			Collaborate: optional.None[bool](),
+			UnitType:    unitType,
+			Archived:    optional.Some(false),
+		})
+		if err != nil {
+			return nil, err
+		}
+		if len(repoIDs) == 0 {
+			repoIDs = []int64{0} // don't let the indexer return all repos
+		}
+		return &issue_indexer.SearchOptions{
+			RepoIDs:    repoIDs,
+			AllPublic:  true,
+			IsPull:     optional.Some(unitType == unit.TypePullRequests),
+			IsClosed:   optional.Some(false),
+			IsArchived: optional.Some(false),
+		}, nil
+	}
+
+	var workbench DashboardWorkbench
+	err := func() error {
+		issueOpts, err := openItemsOptions(unit.TypeIssues)
+		if err != nil {
+			return err
+		}
+		pullOpts, err := openItemsOptions(unit.TypePullRequests)
+		if err != nil {
+			return err
+		}
+		doerIDStr := strconv.FormatInt(doerID, 10)
+		if workbench.AssignedIssueCount, err = issue_indexer.CountIssues(ctx, issueOpts.Copy(func(o *issue_indexer.SearchOptions) { o.AssigneeID = doerIDStr })); err != nil {
+			return err
+		}
+		if workbench.ReviewRequestedCount, err = issue_indexer.CountIssues(ctx, pullOpts.Copy(func(o *issue_indexer.SearchOptions) { o.ReviewRequestedID = optional.Some(doerID) })); err != nil {
+			return err
+		}
+		workbench.CreatedPullCount, err = issue_indexer.CountIssues(ctx, pullOpts.Copy(func(o *issue_indexer.SearchOptions) { o.PosterID = doerIDStr }))
+		return err
+	}()
+	if err != nil {
+		// the dashboard is still useful without the counts, for example when the issue indexer is unavailable
+		log.Error("prepareDashboardWorkbench: %v", err)
+		return
+	}
+	ctx.Data["Workbench"] = &workbench
 }
 
 // Milestones render the user milestones page

@@ -104,3 +104,78 @@
   color: var(--color-primary-dark-1);
   font-weight: var(--font-weight-medium);
 }
+
+/* settings pages use flat sections: a title with a divider instead of a box */
+:is(.user-setting-content, .org-setting-content, .repo-setting-content, .admin-setting-content, .repository.settings .user-main-content) > .ui.top.attached.header:not(.error) {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0 10px;
+  border: none;
+  border-bottom: 1px solid var(--color-secondary);
+  border-radius: 0;
+  background: none;
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+:is(.user-setting-content, .org-setting-content, .repo-setting-content, .admin-setting-content, .repository.settings .user-main-content) > .ui.top.attached.header:not(.error) > .ui.right {
+  right: 0;
+  bottom: 10px;
+}
+
+:is(.user-setting-content, .org-setting-content, .repo-setting-content, .admin-setting-content, .repository.settings .user-main-content) > .ui.attached.segment:not(.error, .table) {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 16px 0 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+:is(.user-setting-content, .org-setting-content, .repo-setting-content, .admin-setting-content, .repository.settings .user-main-content) > .ui.attached.table.segment {
+  margin: 12px 0 0;
+  width: 100%;
+  max-width: 100%;
+  border-top: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius-medium);
+}
+
+:is(.user-setting-content, .org-setting-content, .repo-setting-content, .admin-setting-content, .repository.settings .user-main-content) > .ui.attached.segment + .ui.top.attached.header {
+  margin-top: 36px;
+}
+
+/* the user settings and admin navigation are shown in the sidebar on wide screens, the copy in the page is used otherwise */
+#navbar .navbar-nav > .flex-container-nav {
+  width: auto;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-secondary);
+}
+
+#navbar .navbar-nav > .flex-container-nav > .ui.vertical.menu > .header.item {
+  padding: 4px 10px 8px;
+  font-size: 12px;
+  color: var(--color-text-light-2);
+}
+
+#navbar .navbar-nav > .flex-container-nav > .ui.vertical.menu > a.item.item,
+#navbar .navbar-nav > .flex-container-nav > .ui.vertical.menu > details.item > summary {
+  padding: 8px 10px;
+}
+
+@media (min-width: 1024px) {
+  html:not(.navbar-sidebar-collapsed) body:has(#navbar .navbar-nav > .flex-container-nav) .page-content .flex-container > .flex-container-nav {
+    display: none;
+  }
+  .navbar-sidebar-collapsed #navbar .navbar-nav > .flex-container-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  #navbar .navbar-nav > .flex-container-nav {
+    display: none;
+  }
+}

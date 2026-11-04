@@ -1,5 +1,15 @@
 .repo-header {
-  padding: 20px 0 6px;
+  padding: 20px 0 12px;
+}
+
+.repo-header-about {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  margin: -4px 0 14px;
+  font-size: 15px;
+  color: var(--color-text-light-1);
 }
 
 .secondary-nav .secondary-info {
@@ -950,34 +960,45 @@
 
 .repository .repository-summary {
   box-shadow: none;
+  border: none;
+  background: none;
 }
 
 .repository .repository-summary .segment.sub-menu {
   border: none;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 4px;
   padding: 0;
-  overflow: hidden;
+  background: none;
 }
 
 .repository .repository-summary .sub-menu .item {
-  flex: 1;
-  height: 33px; /* match search bar height, need to be improved in the future to use some consistent methods */
+  height: 30px;
   line-height: var(--line-height-default);
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.25em;
-  padding: 0 0.5em; /* make the UI look better for narrow (mobile) view */
+  gap: 6px;
+  padding: 0 10px;
+  border-radius: var(--border-radius);
+  color: var(--color-text-light-1);
   text-decoration: none;
+  transition: var(--transition-hover);
+}
+
+.repository .repository-summary .sub-menu .item:first-child {
+  margin-left: -10px; /* align the text with the content below */
 }
 
 .repository .repository-summary .sub-menu .item:hover {
   background: var(--color-hover);
+  color: var(--color-text);
 }
 
 .repository .repository-summary .sub-menu .item.active {
-  background: var(--color-secondary);
+  background: var(--color-active);
+  color: var(--color-text-dark);
 }
 
 #cite-repo-modal .citation.button {
@@ -1384,6 +1405,7 @@ tbody.commit-list {
 #diff-container {
   display: flex;
   gap: var(--page-spacing);
+  container-type: inline-size; /* the file tree width depends on the space left by the navbar sidebar, not on the viewport */
 }
 
 #diff-boxes-column {
@@ -1410,7 +1432,7 @@ tbody.commit-list {
   flex-direction: column;
 }
 
-@media (min-width: 1201px) {
+@container (min-width: 1100px) {
   #diff-file-tree {
     flex-basis: 320px;
   }

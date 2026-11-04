@@ -8,6 +8,7 @@ import {initAvatarUploaderWithCropper} from './comp/Cropper.ts';
 import {initCompSearchRepoBox} from './comp/SearchRepoBox.ts';
 import {initRepoSwitcher} from './repo-switcher.ts';
 import {initScopedWorkflowRequired} from './comp/ScopedWorkflows.ts';
+import {isNavbarSidebarCollapsed, setNavbarSidebarCollapsed} from '../modules/navbar-sidebar.ts';
 
 const {appUrl, appSubUrl} = window.config;
 
@@ -20,6 +21,31 @@ function initHeadNavbarContentToggle() {
     const isExpanded = btn.classList.contains('active');
     navbar.classList.toggle('navbar-menu-open', !isExpanded);
     btn.classList.toggle('active', !isExpanded);
+  });
+}
+
+function initHeadNavbarSidebarToggle() {
+  const btn = document.querySelector('.navbar-sidebar-toggle');
+  if (!btn) return;
+
+  // the collapsed sidebar only shows icons, so show the item names as tooltips
+  const syncItemTooltips = () => {
+    const collapsed = isNavbarSidebarCollapsed();
+    for (const item of document.querySelectorAll<HTMLElement>('#navbar .navbar-nav > .item')) {
+      if (collapsed) {
+        item.setAttribute('data-tooltip-placement', 'right');
+        item.setAttribute('data-tooltip-content', item.textContent.replace(/\s+/g, ' ').trim());
+      } else {
+        item.removeAttribute('data-tooltip-content');
+        if (item._tippy) item._tippy.destroy();
+      }
+    }
+  };
+  syncItemTooltips();
+
+  btn.addEventListener('click', () => {
+    setNavbarSidebarCollapsed(!isNavbarSidebarCollapsed());
+    syncItemTooltips();
   });
 }
 
@@ -50,6 +76,7 @@ function initFooterThemeSelector() {
 
 export function initCommmPageComponents() {
   initHeadNavbarContentToggle();
+  initHeadNavbarSidebarToggle();
   initFooterLanguageMenu();
   initFooterThemeSelector();
 }

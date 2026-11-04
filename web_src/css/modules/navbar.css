@@ -1,55 +1,68 @@
+/* The navbar is a fixed sidebar on wide screens (collapsible to an icon rail) and a top bar with a toggleable menu on narrow screens */
+
 #navbar {
+  display: flex;
   background: var(--color-nav-bg);
-  border-bottom: 1px solid var(--color-secondary);
-  padding: 0 16px;
 }
 
-#navbar,
+.navbar-header,
+.navbar-header-items,
 .navbar-list {
   display: flex;
   align-items: center;
   gap: 4px;
+  min-width: 0;
 }
 
-#navbar > .item,
-#navbar > .navbar-list > .item {
+.navbar-header > .item,
+.navbar-header-items > .item,
+.navbar-list > .item {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
+  gap: 8px;
   color: var(--color-nav-text);
   text-decoration: none;
   min-height: 36px;
   min-width: 36px;
-  padding: 3px 12px;
+  padding: 3px 10px;
   border-radius: var(--border-radius);
   transition: var(--transition-hover);
 }
 
-#navbar-logo {
-  margin: 10px 8px 10px 0; /* center the 36px items in the 56px row */
+.navbar-header > .item:hover,
+.navbar-header-items > .item:hover,
+.navbar-list > .item:hover {
+  background: var(--color-nav-hover-bg);
 }
 
-#navbar > .item.active,
-#navbar > .navbar-list > .item.active {
+.navbar-header-items > .item {
+  justify-content: center;
+  padding: 3px;
+}
+
+#navbar-logo {
+  padding: 3px;
+}
+
+.navbar-list > .item.active {
   background: var(--color-active);
   font-weight: var(--font-weight-medium);
 }
 
-#navbar > .item:hover,
-#navbar > .navbar-list > .item:hover {
-  background: var(--color-nav-hover-bg);
+.navbar-account > .navbar-sign-in {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
 }
 
-#navbar > .navbar-list > .item.ui.dropdown {
-  padding-right: 5px;
+.navbar-account > .navbar-sign-in:hover,
+.navbar-account > .navbar-sign-in.active {
+  background: var(--color-primary-hover);
 }
 
-#navbar > .navbar-left {
-  margin-right: auto;
-}
-
-.navbar-search {
-  margin: 0 8px;
+.navbar-dropdown-caret {
+  flex-shrink: 0;
+  opacity: 0.7;
 }
 
 .navbar-search .global-shortcut-wrapper {
@@ -60,55 +73,217 @@
 
 .navbar-search .navbar-search-icon {
   position: absolute;
+  z-index: 1; /* above the input, which is positioned when it expands in the collapsed sidebar */
   left: 10px;
   color: var(--color-text-light-3);
   pointer-events: none;
 }
 
 #navbar .navbar-search input {
-  width: clamp(160px, 22vw, 280px);
+  width: 100%;
   height: 34px;
   padding: 0 30px 0 34px;
   border-radius: var(--border-radius);
   font-size: 13px;
 }
 
-@media (max-width: 767.98px) {
+.navbar-nav > .item > .svg,
+.navbar-nav > .item > .ui.avatar {
+  flex-shrink: 0;
+  color: var(--color-text-light-2);
+}
+
+.navbar-nav > .item.active,
+.navbar-nav > .item.active:hover {
+  background: var(--color-primary-alpha-10);
+  color: var(--color-primary-dark-1);
+}
+
+.navbar-nav > .item.active > .svg {
+  color: inherit;
+}
+
+.navbar-nav > .item > .ui.label {
+  margin-left: auto;
+  border-radius: var(--border-radius-full);
+  padding-inline: 7px;
+}
+
+.navbar-nav-context {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 10px;
+  min-width: 0;
+}
+
+.navbar-nav-context > .svg,
+.navbar-nav-context > .ui.avatar {
+  flex-shrink: 0;
+}
+
+.navbar-nav-context-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+  color: var(--color-text-dark);
+}
+
+.navbar-nav-context-text > span {
+  font-size: 12px;
+  color: var(--color-text-light-2);
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding-left: var(--navbar-sidebar-width);
+  }
   #navbar {
-    flex-wrap: wrap;
-    row-gap: 0;
-    padding: 0 10px;
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 100; /* above the page content, so the dropdown menus can overlap it */
+    width: var(--navbar-sidebar-width);
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 10px 0;
+    border-right: 1px solid var(--color-secondary);
   }
-  #navbar-logo {
-    margin: 6.5px auto 6.5px 0;
+  .navbar-header {
+    justify-content: space-between;
   }
-  .navbar-search {
-    margin: 8px 0 0;
-  }
-  #navbar .navbar-search input {
-    width: 100%;
-  }
-  .navbar-search kbd {
+  #navbar-expand-toggle,
+  .navbar-create-text {
     display: none;
   }
-  #navbar-expand-toggle {
-    order: 1;
+  .navbar-user-dropdown {
+    flex: 1 1 auto;
+  }
+  .navbar-account > .item {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .navbar-account > .navbar-user-dropdown {
+    justify-content: flex-start;
+  }
+  .navbar-account > .navbar-create-dropdown {
+    flex: 0 0 auto;
+  }
+  .navbar-nav {
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    min-height: 0;
+    overflow-y: auto;
+    margin: 0 -10px;
+    padding: 8px 10px 12px;
+    border-top: 1px solid var(--color-secondary);
+  }
+  .navbar-nav > .item-flex-space {
+    flex: 1 0 8px; /* push the items after it, like "Settings", to the bottom */
+  }
+  /* the sidebar shows the repository tabs */
+  .repo-header-tabs {
+    display: none;
+  }
+  .secondary-nav:has(.repo-header-tabs) {
+    border-bottom: 1px solid var(--color-secondary);
+  }
+
+  .navbar-sidebar-collapsed body {
+    padding-left: var(--navbar-sidebar-width-collapsed);
+  }
+  .navbar-sidebar-collapsed #navbar {
+    width: var(--navbar-sidebar-width-collapsed);
+    padding-inline: 12px;
+  }
+  .navbar-sidebar-collapsed .navbar-header,
+  .navbar-sidebar-collapsed .navbar-header-items,
+  .navbar-sidebar-collapsed .navbar-account {
+    flex-direction: column;
+  }
+  .navbar-sidebar-collapsed .navbar-sidebar-toggle .svg {
+    transform: scaleX(-1);
+  }
+  .navbar-sidebar-collapsed #navbar .navbar-item-text,
+  .navbar-sidebar-collapsed #navbar .navbar-dropdown-caret,
+  .navbar-sidebar-collapsed #navbar .navbar-nav > .item > .ui.label,
+  .navbar-sidebar-collapsed #navbar .navbar-search kbd {
+    display: none;
+  }
+  .navbar-sidebar-collapsed .navbar-account > .item,
+  .navbar-sidebar-collapsed .navbar-nav > .item {
+    flex: 0 0 auto;
+    justify-content: center;
+    gap: 0;
+    padding: 3px;
+    font-size: 0; /* hide the label text nodes of the items, the icons have a fixed size */
+  }
+  .navbar-sidebar-collapsed .navbar-nav {
+    margin: 0 -12px;
+    padding-inline: 12px;
+  }
+  .navbar-sidebar-collapsed .navbar-nav-context {
+    justify-content: center;
+    padding-inline: 0;
+  }
+  .navbar-sidebar-collapsed #navbar .navbar-search input {
+    padding-right: 0;
+    cursor: pointer;
+  }
+  .navbar-sidebar-collapsed #navbar .navbar-search input:not(:focus) {
+    color: transparent;
+  }
+  .navbar-sidebar-collapsed #navbar .navbar-search input:not(:focus)::placeholder {
+    color: transparent !important; /* override the global placeholder color which uses !important */
+  }
+  .navbar-sidebar-collapsed #navbar .navbar-search input:focus {
+    position: relative;
+    width: 280px;
+    padding-right: 10px;
+    box-shadow: var(--box-shadow-popup), var(--box-shadow-focus);
+    cursor: text;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  #navbar {
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid var(--color-secondary);
+  }
+  .navbar-header {
+    width: 100%;
+    justify-content: space-between;
+  }
+  #navbar-logo {
+    margin: 6.5px 0; /* center the 36px items in the 49px row */
+  }
+  #navbar .navbar-sidebar-toggle {
+    display: none;
   }
   .navbar-list {
     display: none;
-    order: 2;
     width: 100%;
     flex-direction: column;
     align-items: stretch;
   }
-  .navbar-left {
-    margin-top: 5px;
-  }
-  .navbar-menu-open .navbar-list {
+  #navbar.navbar-menu-open .navbar-list {
     display: flex;
   }
   #navbar.navbar-menu-open {
     padding-bottom: 8px;
+  }
+  .navbar-search {
+    margin: 4px 0;
+  }
+  .navbar-search kbd {
+    display: none;
+  }
+  .navbar-nav-context {
+    padding-inline: 10px;
   }
 }
 

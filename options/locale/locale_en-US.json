@@ -330,6 +330,7 @@
   "install.env_config_keys_prompt": "The following environment variables will also be applied to your configuration file:",
   "install.config_write_file_prompt": "These configuration options will be written into: %s",
   "home.nav_menu": "Navigation Menu",
+  "home.toggle_sidebar": "Toggle sidebar",
   "home.uname_holder": "Username or Email Address",
   "home.password_holder": "Password",
   "home.switch_dashboard_context": "Switch Dashboard Context",

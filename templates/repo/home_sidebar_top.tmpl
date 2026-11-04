@@ -10,19 +10,7 @@
 	</form>
 
 	<div class="flex-relaxed-list">
-		<div class="repo-home-sidebar-header">{{ctx.Locale.Tr "repo.repo_desc"}}</div>
-
-		<div class="repo-description tw-break-anywhere tw-gap-2">
-			{{- $description := .Repository.DescriptionHTML ctx -}}
-			{{if $description}}{{$description | RenderCodeBlock}}{{else}}{{ctx.Locale.Tr "repo.repo_no_desc"}}{{end}}
-		</div>
-
-		{{if .Repository.Website}}
-			<a class="flex-text-block" href="{{.Repository.Website}}">
-				{{svg "octicon-link" 16 "tw-text-text"}} <span class="tw-text-primary">{{.Repository.Website}}</span>
-			</a>
-		{{end}}
-
+		{{/* the description and website are shown in the repo header */}}
 		<div id="repo-topics" class="flex-text-block tw-flex-wrap tw-gap-1 tw-my-1 tw-text-text">
 			{{/* !!!! it SHOULD and MUST match the code in repo-home.ts */}}
 			{{range .Topics}}<a class="repo-topic ui large label gt-ellipsis" title={{.Name}} href="{{AppSubUrl}}/explore/repos?q={{.Name}}&topic=1">{{.Name}}</a>{{end}}

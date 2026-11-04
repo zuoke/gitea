@@ -1,0 +1,42 @@
+{{$unreadNotificationCount := call ctx.RootData.PageGlobalData.GetNotificationUnreadCount}}
+<div class="dashboard-workbench">
+	<div class="dashboard-workbench-cards">
+		{{if not ctx.Consts.RepoUnitTypeIssues.UnitGlobalDisabled}}
+			<a class="dashboard-workbench-card" href="{{AppSubUrl}}/issues?type=assigned">
+				<span class="dashboard-workbench-card-icon tw-text-green">{{svg "octicon-issue-opened" 18}}</span>
+				<span class="dashboard-workbench-card-count">{{CountFmt .Workbench.AssignedIssueCount}}</span>
+				<span class="dashboard-workbench-card-label">{{ctx.Locale.Tr "repo.issues.filter_type.assigned_to_you"}}</span>
+				<span class="dashboard-workbench-card-desc">{{ctx.Locale.Tr "issues"}}</span>
+			</a>
+		{{end}}
+		{{if not ctx.Consts.RepoUnitTypePullRequests.UnitGlobalDisabled}}
+			<a class="dashboard-workbench-card" href="{{AppSubUrl}}/pulls?type=review_requested">
+				<span class="dashboard-workbench-card-icon tw-text-orange">{{svg "octicon-code-review" 18}}</span>
+				<span class="dashboard-workbench-card-count">{{CountFmt .Workbench.ReviewRequestedCount}}</span>
+				<span class="dashboard-workbench-card-label">{{ctx.Locale.Tr "repo.issues.filter_type.review_requested"}}</span>
+				<span class="dashboard-workbench-card-desc">{{ctx.Locale.Tr "pull_requests"}}</span>
+			</a>
+			<a class="dashboard-workbench-card" href="{{AppSubUrl}}/pulls?type=created_by">
+				<span class="dashboard-workbench-card-icon tw-text-primary">{{svg "octicon-git-pull-request" 18}}</span>
+				<span class="dashboard-workbench-card-count">{{CountFmt .Workbench.CreatedPullCount}}</span>
+				<span class="dashboard-workbench-card-label">{{ctx.Locale.Tr "repo.issues.filter_type.created_by_you"}}</span>
+				<span class="dashboard-workbench-card-desc">{{ctx.Locale.Tr "pull_requests"}}</span>
+			</a>
+		{{end}}
+		<a class="dashboard-workbench-card" href="{{AppSubUrl}}/notifications">
+			<span class="dashboard-workbench-card-icon tw-text-yellow">{{svg "octicon-bell" 18}}</span>
+			<span class="dashboard-workbench-card-count">{{CountFmt $unreadNotificationCount}}</span>
+			<span class="dashboard-workbench-card-label">{{ctx.Locale.Tr "notification.unread"}}</span>
+			<span class="dashboard-workbench-card-desc">{{ctx.Locale.Tr "notifications"}}</span>
+		</a>
+	</div>
+	<div class="dashboard-workbench-actions">
+		<a class="ui small primary button" href="{{AppSubUrl}}/repo/create">{{svg "octicon-plus"}} {{ctx.Locale.Tr "new_repo"}}</a>
+		{{if not .DisableMigrations}}
+			<a class="ui small button" href="{{AppSubUrl}}/repo/migrate">{{svg "octicon-repo-push"}} {{ctx.Locale.Tr "new_migrate"}}</a>
+		{{end}}
+		{{if .SignedUser.CanCreateOrganization}}
+			<a class="ui small button" href="{{AppSubUrl}}/org/create">{{svg "octicon-organization"}} {{ctx.Locale.Tr "new_org"}}</a>
+		{{end}}
+	</div>
+</div>

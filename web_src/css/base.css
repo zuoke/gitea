@@ -41,6 +41,8 @@
   --page-spacing: 16px; /* space between page elements */
   --page-margin-x: 32px; /* minimum space on left and right side of page */
   --page-space-bottom: 64px; /* space between last page element and footer */
+  --navbar-sidebar-width: 248px;
+  --navbar-sidebar-width-collapsed: 60px;
   --transition-hover-fade: opacity 0.2s ease; /* fade transition for elements that show on hover */
 
   /* z-index */

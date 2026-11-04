@@ -4,6 +4,10 @@
 	<div class="ui container flex-container">
 		<div class="flex-container-main">
 			{{template "base/alert" .}}
+			{{if .Workbench}}
+				{{template "user/dashboard/workbench" .}}
+				<h4 class="dashboard-section-title">{{svg "octicon-pulse"}} {{ctx.Locale.Tr "activities"}}</h4>
+			{{end}}
 			{{template "user/heatmap" .}}
 			{{if .Page.Paginator.TotalPages}}
 				{{template "user/dashboard/feeds" .}}
